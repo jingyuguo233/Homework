@@ -104,8 +104,28 @@
         1.all_love_words_yahoo.pkl：yahoo口令集里所有love单词后的字符串
         2.'all_love_words_csdn.pkl：csdn口令集里所有love单词后的字符串
         
+## get_top_30.py
+    本程序读取find_english_words.py程序中生成的所有口令中英文单词的pkl文件，并对其进行词频统计将top30词频的单词统计存入top30_english_csdn.pkl/top30_english_csdn.pkl文件中。
+    输入：
+    all_english_tosmall_yahoo.pkl：yahoo口令集里所有的英文单词
+    或者 all_english_tosmall_csdn.pkl：csdn口令集里所有的英文单词 （需手动进行修改）
+    输出：
+    top30_english_csdn.pkl：csdn中词频为前30的单词
+    top30_english_csdn.pklyahoo中词频为前30的单词
+## Ana_englishword.py
+    本程序主要是对csdn/yahoo口令数据集中的单词词频统计结果进行了可视化的展示，分别对top30及top10的数据进行饼图和折线图的绘制
 
-
-
-
-        
+## Ana_love_what.py
+    本程序的主要目的是对csdn/yahoo口令数据集中出现在“love”字符串后的字符串进行统计结果分析及可视化展示。具体来说:
+    0.读取all_love_word.pkl文件，提取出里面的字符串及数字串，保存为love_name.pkl文件及love_num.pkl文件
+    1.读取love_name.pkl文件及love_num.pkl文件，并进行词频分析
+    2.针对top30_name及top30_num进行饼图和柱形图的绘制进行可视化展现
+ 
+ ## find_all_pinyin.py
+    本程序的主要目的是为查找口令中拼音同学进行了一点预处理工作，主要目的是剔除掉口令集中所有的英文单词，示例即：
+    输入：zhaoloveguo
+    输出：['zhao','guo']
+    具体实现的方法为：
+    d.check(word)结果true并且word不在拼音表中，这样就可以使得剔除掉除去拼音之外所有正确地英文单词，在此基础上进行拼音的查找和识别可以极大提升准确率。
+    
+ 
