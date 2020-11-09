@@ -1,4 +1,5 @@
 # Homework
+### 需要进行更正，Yahoo的数据没用到top30.py/top30.py直接删去不用也可
 ## find_english_words.py
     本程序的目的是提取出口令中所包含的英文单词，即：
     输入：password123!
