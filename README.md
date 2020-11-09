@@ -45,10 +45,10 @@
       本程序需要在程序源代码中修改相应的数据集文件及保存的数据文件名才能生成不同数据集不同类型的文件，具体说明如下：
       1.生成csdn的数据文件，需要修改的地方有三处：
           #设置读取的文件数据
-          f = open("preprocess_yahoo.txt", "r")       （位于def get_english()）
+          f = open("preprocess_csdn.txt", "r")       （位于def get_english()）
           #设置保存的文件数据 存取口令集中所有的英文单词
-          with open(join(path, 'all_english_tosmall_yahoo.pkl')(位于def savedata())
-          source_data = 'all_english_tosmall_yanhoo.pkl'(位于def loaddata())
+          with open(join(path, 'all_english_tosmall_csdn.pkl')(位于def savedata())
+          source_data = 'all_english_tosmall_csdn.pkl'(位于def loaddata())
       2.同理，生成yahoo的数据文件同样需要修改这三条语句：
           f = open("preprocess_yahoo.txt", "r")       （位于def get_english()）
           with open(join(path, 'all_english_tosmall_yahoo.pkl')(位于def savedata())
@@ -57,5 +57,55 @@
         对本程序进行相应的修改后可得到以下几个文件：
         1.all_english_tosmall_yahoo.pkl：yahoo口令集里所有的英文单词
         2.all_english_tosmall_csdn.pkl：csdn口令集里所有的英文单词
+## find_english_words_no_trans.py
+    本程序与find_english_words.py的实现方式及思路完全相同，区别在于本程序不对英文单词进行全部小写的转换，保留其在口令集中原有的样式，即：
+        输入：PASSWORD123!
+        输出：PASSWORD
+     详细情况参见find_english_words.py
 
-      
+## find_who_you_love.py
+    本程序的目的是提取出所有口令出现在“love”后的字符串及字符，示例：
+        输入:zhaoloveguo1314
+        输出：guo1314
+### 实现思路及方法
+#### def get_love_words():
+    0.按行读取口令数据集中的所有数据并提取出口令pwd
+    1.采用wordninja进行对pwd进行划分得到all_words这个list对象，示例：
+    输入：zhaoloveguo1314
+    输出：['zhao','guo','1314']
+    2.检查all_words中是否出现了love字符串，若出现，则对love后面的元素进行拼接，得到lovewords这个list中的元素，示例：
+    输入：['zhao','guo','1314'],['loveher']
+    输出：['guo1314','her']
+  #### def save_data():
+    对get_love_words()函数中得到的lovewords进行存储
+  #### def save_data():
+    读取save_data()函数中存储的数据，为后续的分析工作对数据的读取进行准备
+### 数据集及实验环境配置
+#### 工具库
+    1.wordninja：用于实现口令中不同元组组成的划分
+    2.pickle：用于生成、加载pkl文件
+#### 数据集
+    1.CSDN口令数据集，文件名为“preprocess_csdn.txt”
+    2.Yahoo口令数据集，文件名为“preprocess_yahoo.txt”
+#### 实验配置及结果
+      本程序需要在程序源代码中修改相应的数据集文件及保存的数据文件名才能生成不同数据集不同类型的文件，具体说明如下：
+      1.生成csdn的数据文件，需要修改的地方有三处：
+          #设置读取的文件数据
+          f = open("preprocess_csdn.txt", "r")       （位于def get_love_words()）
+          #设置保存的文件数据 存取口令集中所有的英文单词
+          with open(join(path, 'all_love_words_csdn.pkl')(位于def save_data())
+          source_data = 'all_english_tosmall_csdn.pkl'(位于def load_data())
+      2.同理，生成yahoo的数据文件同样需要修改这三条语句：
+          f = open("preprocess_yahoo.txt", "r")       （位于def get_english()）
+          with open(join(path, 'all_love_words_yahoo.pkl')(位于def savedata())
+          source_data = 'all_english_tosmall_yanhoo.pkl'(位于def loaddata())
+      此外，本程序提取英文单词的目的是为了进行词频的top统计，由于英文字母的大小写不影响单词的语义，因此本程序统一将英文单词转化成小写进行处理。
+        对本程序进行相应的修改后可得到以下几个文件：
+        1.all_love_words_yahoo.pkl：yahoo口令集里所有love单词后的字符串
+        2.'all_love_words_csdn.pkl：csdn口令集里所有love单词后的字符串
+        
+
+
+
+
+        
